@@ -3,6 +3,8 @@ package by.novikau.taxipark.service;
 import by.novikau.taxipark.entity.Driver;
 import by.novikau.taxipark.repo.DriverRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +17,11 @@ public class DriverServiceImpl implements DriverService{
     @Autowired
     public DriverServiceImpl(DriverRepo driverRepo) {
         this.driverRepo = driverRepo;
+    }
+
+    @Override
+    public Page<Driver> paginationFindAll(Pageable pageable) {
+        return driverRepo.findAll(pageable);
     }
 
     @Override

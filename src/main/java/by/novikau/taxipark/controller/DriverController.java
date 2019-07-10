@@ -4,6 +4,8 @@ import by.novikau.taxipark.entity.Driver;
 import by.novikau.taxipark.service.DriverService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +20,14 @@ public class DriverController {
     public DriverController(DriverService driverService) {
         this.driverService = driverService;
     }
-    
+
+    @GetMapping("/paginator{page}")
+    public Page<Driver> getPaginationDrivers(@PathVariable Integer page) {
+
+        Page<Driver> drivers = driverService.paginationFindAll(PageRequest.of(page, 2));
+
+        return drivers;
+    }
 
     @GetMapping
     public List<Driver> getAllDrivers() {
