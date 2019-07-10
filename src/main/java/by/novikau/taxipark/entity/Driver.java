@@ -1,10 +1,14 @@
 package by.novikau.taxipark.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "driver")
 public class Driver {
 
@@ -23,12 +27,13 @@ public class Driver {
     private String patronymic;
 
     @Column(name = "birthDay")
-    private LocalDate birthDay;
+    @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
+    private Date birthDay;
 
     @Column(name = "sex")
     private String sex;
 
-    @Column(name = "Address")
+    @Column(name = "address")
     private String address;
 
     @Column(name = "driveLicenseNumber")
@@ -67,11 +72,11 @@ public class Driver {
         this.patronymic = patronymic;
     }
 
-    public LocalDate getBirthDay() {
+    public Date getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(LocalDate birthDay) {
+    public void setBirthDay(Date birthDay) {
         this.birthDay = birthDay;
     }
 
