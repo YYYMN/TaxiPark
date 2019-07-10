@@ -21,10 +21,10 @@ public class DriverController {
         this.driverService = driverService;
     }
 
-    @GetMapping("/paginator{page}")
-    public Page<Driver> getPaginationDrivers(@PathVariable Integer page) {
+    @GetMapping("/paginator")
+    public Page<Driver> getPaginationDrivers() {
 
-        Page<Driver> drivers = driverService.paginationFindAll(PageRequest.of(page, 2));
+        Page<Driver> drivers = driverService.paginationFindAll(PageRequest.of(0, 2));
 
         return drivers;
     }
