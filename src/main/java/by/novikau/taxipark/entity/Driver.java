@@ -17,18 +17,18 @@ public class Driver {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "firstName")
-    private String firstName;
+    @Column(name = "surname")
+    private String surname;
 
-    @Column(name = "secondName")
-    private String secondName;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "patronymic")
     private String patronymic;
 
-    @Column(name = "birthDay")
+    @Column(name = "birthday")
     @JsonFormat(shape= JsonFormat.Shape.STRING, pattern="dd-MM-yyyy")
-    private Date birthDay;
+    private Date birthday;
 
     @Column(name = "sex")
     private String sex;
@@ -48,20 +48,20 @@ public class Driver {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getPatronymic() {
@@ -72,12 +72,12 @@ public class Driver {
         this.patronymic = patronymic;
     }
 
-    public Date getBirthDay() {
-        return birthDay;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getSex() {
@@ -121,11 +121,11 @@ public class Driver {
     public String toString() {
         return "Driver{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 ", patronymic='" + patronymic + '\'' +
-                ", birthDay=" + birthDay +
-                ", sex=" + sex +
+                ", birthday=" + birthday +
+                ", sex='" + sex + '\'' +
                 ", address='" + address + '\'' +
                 ", driveLicenseNumber='" + driveLicenseNumber + '\'' +
                 '}';

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DriverServiceImpl implements DriverService{
@@ -31,8 +32,8 @@ public class DriverServiceImpl implements DriverService{
     }
 
     @Override
-    public Driver getDriverById(int id) {
-        return driverRepo.getOne(id);
+    public Optional<Driver> getDriverById(int id) {
+        return driverRepo.findById(id);
     }
 
     @Override

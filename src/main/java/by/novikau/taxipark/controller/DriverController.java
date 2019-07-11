@@ -1,6 +1,7 @@
 package by.novikau.taxipark.controller;
 
 import by.novikau.taxipark.entity.Driver;
+import by.novikau.taxipark.exception.NotFoundException;
 import by.novikau.taxipark.service.DriverService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("driver")
@@ -21,12 +23,9 @@ public class DriverController {
         this.driverService = driverService;
     }
 
-    @GetMapping("/paginator")
-    public Page<Driver> getPaginationDrivers() {
-
-        Page<Driver> drivers = driverService.paginationFindAll(PageRequest.of(0, 2));
-
-        return drivers;
+    @GetMapping("/pagination/{page}/{size}")
+    public Page<Driver> getPaginationDrivers(@PathVariable Integer page, @PathVariable Integer size) {
+        return driverService.paginationFindAll(PageRequest.of(page, size));
     }
 
     @GetMapping
@@ -36,7 +35,12 @@ public class DriverController {
 
     @GetMapping("{id}")
     public Driver getDriverById(@PathVariable("id") Integer id) {
-        return driverService.getDriverById(id);
+
+        Optional<Driver> optionalDriver = driverService.getDriverById(id);
+
+        return optionalDriver.orElseThrow(
+                () ->
+                new NotFoundException("Driver not found for id " + id));
     }
 
     @PostMapping
