@@ -10,7 +10,7 @@ CREATE TABLE `driver`
   `surname`              varchar(255) DEFAULT NULL,
   `name`                 varchar(255) DEFAULT NULL,
   `patronymic`           varchar(255) DEFAULT NULL,
-  `birthday`            date         DEFAULT NULL,
+  `birthday`             date         DEFAULT NULL,
   `sex`                  char(1)      DEFAULT NULL,
   `address`              varchar(255) DEFAULT NULL,
   `drive_license_number` varchar(255) DEFAULT NULL,
@@ -21,9 +21,7 @@ CREATE TABLE `driver`
   COLLATE = utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `driver`
---
+
 
 LOCK TABLES `driver` WRITE;
 /*!40000 ALTER TABLE `driver`

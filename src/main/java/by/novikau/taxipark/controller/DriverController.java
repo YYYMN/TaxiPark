@@ -35,9 +35,7 @@ public class DriverController {
 
     @GetMapping("{id}")
     public Driver getDriverById(@PathVariable("id") Integer id) {
-
         Optional<Driver> optionalDriver = driverService.getDriverById(id);
-
         return optionalDriver.orElseThrow(
                 () ->
                 new NotFoundException("Driver not found for id " + id));
