@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS `driver`;
 SET character_set_client = utf8mb4;
 CREATE TABLE `driver`
 (
-  `id`                   int(11) NOT NULL AUTO_INCREMENT,
+   id                    int(11) NOT NULL AUTO_INCREMENT,
   `surname`              varchar(255) DEFAULT NULL,
   `name`                 varchar(255) DEFAULT NULL,
   `patronymic`           varchar(255) DEFAULT NULL,

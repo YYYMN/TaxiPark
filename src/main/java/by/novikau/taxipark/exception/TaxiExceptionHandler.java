@@ -14,7 +14,13 @@ public class TaxiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<ExceptionResponse> handleкException(Exception exception) {
-        LOG.error("Exception happen.", exception);
-        return new ResponseEntity<>(new ExceptionResponse("Exception happen. " + exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        LOG.error("Exception happened.", exception);
+        return new ResponseEntity<>(new ExceptionResponse("Exception happened. " + exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    protected ResponseEntity<ExceptionResponse> handleкNotFoundException(NotFoundException exception) {
+        LOG.error("Exception happened.", exception);
+        return new ResponseEntity<>(new ExceptionResponse("Exception happened. " + exception.getMessage()), HttpStatus.BAD_REQUEST);
     }
 }

@@ -49,13 +49,20 @@ public class DriverController {
     @PutMapping("{id}")
     public Driver updateDriver(
             @PathVariable("id") Driver driverFromDB,
+            @PathVariable("id") Integer id,
             @RequestBody Driver driver) {
+        if(driverFromDB == null) {
+            throw new NotFoundException("Driver not found for id " + id);
+        }
         BeanUtils.copyProperties(driver, driverFromDB, "id");
         return driverService.updateDriver(driverFromDB);
     }
 
     @DeleteMapping("{id}")
     public void deleteDriver(@PathVariable("id") Integer id) {
+        if (!driverService.getDriverById(id).isPresent()) {
+            throw new NotFoundException("Driver not found for id " + id);
+        }
         driverService.deleteDriverById(id);
     }
 }
