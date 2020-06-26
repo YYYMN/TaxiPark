@@ -1,18 +1,14 @@
 package by.novikau.taxipark.controller;
 
-import by.novikau.taxipark.entity.Driver;
 import by.novikau.taxipark.entity.User;
 import by.novikau.taxipark.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -27,14 +23,15 @@ public class UserController {
 	}
 
 	@GetMapping
-	public List<User> getAllDrivers() {
+	public ResponseEntity<List<User>> getAllUsers() {
 
-		return userService.getAllUsers();
+		List<User> users = userService.getAllUsers();
+		return ResponseEntity.ok(users);
 	}
 
-	@GetMapping("{id}")
-	public Optional<User> getUserById(@PathVariable("id") Long id) {
-
-		return userService.getUser(id);
-	}
+//	@GetMapping("{id}")
+//	public Optional<User> getUserById(@PathVariable("id") Long id) {
+//
+//		return userService.getUser(id);
+//	}
 }
